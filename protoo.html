@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Hussin | Aspiring Data Analyst – DEPI</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --accent: #38bdf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(6px);
+            padding: 1rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        nav strong {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        nav a {
+            color: var(--text);
+            margin-left: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            border-left: 6px solid var(--accent);
+            padding-left: 1.2rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+        }
+
+        .hero-content p {
+            color: var(--muted);
+            margin: 1.2rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-line {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            color: var(--muted);
+            margin: 1.5rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 12px 32px;
+            background: var(--accent);
+            color: #020617;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #7dd3fc;
+            transform: scale(1.02);
+        }
+
+        .profile-upload {
+            text-align: center;
+        }
+
+        .profile-circle {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .profile-circle:hover {
+            transform: scale(1.02);
+            border-color: #7dd3fc;
+        }
+
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .profile-placeholder {
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        #profileInput {
+            display: none;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 1.8rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+            border: 1px solid #1e293b;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 0.7rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        li::before {
+            content: "▹";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .project-link {
+            margin-top: 1.2rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #1e293b;
+            font-size: 0.95rem;
+        }
+
+        .project-link a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+            transition: opacity 0.2s;
+        }
+
+        .project-link a:hover {
+            opacity: 0.8;
+            border-bottom-style: solid;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 1rem 0;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+
+        .contact-info a:hover {
+            border-bottom-style: solid;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            nav {
+                padding: 1rem 5%;
+            }
+            nav a {
+                margin-left: 1rem;
+            }
+            .profile-circle {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <strong>M. Hussin</strong>
+    <div>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>
+            Aspiring Data Analyst
+            <span>DEPI Trainee</span>
+        </h1>
+        <p>Computer Science & Statistics student focused on data cleaning, EDA, and insight generation.</p>
+        <div class="contact-line">
+            <span>📍 Cairo, Egypt</span>
+            <span>📞 01064776495</span>
+            <span>📧 mohamedhuss20087@gmail.com</span>
+        </div>
+        <a href="Mohamed_Hussin_CV__.pdf" class="btn" download>📄 Download CV</a>
+    </div>
+
+    <div class="profile-upload">
+        <div class="profile-circle" onclick="document.getElementById('profileInput').click()">
+            <input type="file" id="profileInput" accept="image/*" onchange="previewProfileImage(event)">
+            <img id="profilePreview" src="#" alt="Profile preview">
+            <div id="profilePlaceholder" class="profile-placeholder" aria-label="Upload profile picture">📸</div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card" style="max-width: 900px; margin: 0 auto;">
+        <p style="font-size: 1.2rem; color: var(--text);">
+            <strong>Computer Science & Statistics student</strong> and aspiring Data Analyst at DEPI with a strong interest in data analysis. 
+            Experienced in data cleaning, preprocessing, and exploratory analysis using Excel, Power Query, and Python. 
+            Focused on transforming raw datasets into structured, analysis-ready data and generating useful insights.
+        </p>
+        <br>
+        <p style="background: #1e293b; padding: 1.2rem; border-radius: 18px;">
+            🎓 <strong>BSc in Computer Science & Statistics</strong> – Helwan University (Expected 2028)<br>
+            <span style="color: var(--muted);">Relevant coursework: Data Structures, Algorithms, Linear Algebra, Probability & Statistics, Database Systems.</span>
+        </p>
+        <br>
+        <p>
+            I’m actively seeking an internship or entry-level data analyst role where I can apply my analytical mindset, 
+            attention to detail, and technical skills to solve real-world problems.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Technical & Soft Skills</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>💻 Technical</h3>
+            <ul>
+                <li>Excel (advanced formulas, Pivot Tables, data validation)</li>
+                <li>Power Query (cleaning, transformations, ETL workflows)</li>
+                <li>Python (Pandas, NumPy) – data preprocessing</li>
+                <li>SQL fundamentals (SELECT, WHERE, JOIN, GROUP BY)</li>
+                <li>Exploratory Data Analysis (EDA)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🧠 Soft Skills</h3>
+            <ul>
+                <li>Analytical Thinking</li>
+                <li>Attention to Detail</li>
+                <li>Problem Solving</li>
+                <li>Communication</li>
+                <li>Continuous Learning</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>📱 Student Social Media Addiction</h3>
+            <p><strong>Excel + Power Query</strong></p>
+            <ul>
+                <li>Cleaned and preprocessed dataset using Excel and Power Query.</li>
+                <li>Built transformation pipelines to remove duplicates and handle missing values.</li>
+                <li>Performed data modeling and prepared analysis-ready datasets.</li>
+                <li>Analyzed patterns using Pivot Tables and formulas.</li>
+                <li>Enabled automatic data refresh workflows.</li>
+            </ul>
+            <div class="project-link">
+                🔗 <a href="https://1drv.ms/x/c/6ee5afcf1dce2f4d/IQCTSfEn39k_Q77Huj_o4CBCAX-8avG4VFmIja6Mtf9ARzM?e=AC83TY" target="_blank">View Social Media Addiction project (OneDrive)</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📊 Excel Practice & Assignments</h3>
+            <p><strong>Excel / Power Query</strong></p>
+            <ul>
+                <li>Completed multiple Excel assignments while learning data analysis.</li>
+                <li>Practiced Power Query, Pivot Tables, lookup formulas, and data validation.</li>
+                <li>Built structured datasets and analytical summaries.</li>
+            </ul>
+            <div class="project-link">
+                🔗 <a href="https://1drv.ms/x/c/6ee5afcf1dce2f4d/IQALbcIFhJekQ49JfIhBljesAT9hxFTb-c2Yx-_iTZLKCis?e=fznrvA" target="_blank">Excel Practice 1 (OneDrive)</a><br>
+                🔗 <a href="https://1drv.ms/x/c/6ee5afcf1dce2f4d/IQDBWNnHB87cS4e6MhuMx8oZAQ7b6TauriIKVeAa9NPqhOE?e=yIYR9d" target="_blank">Excel Practice 2 (OneDrive)</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <h2>Services</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>🧹 Data Cleaning & Preprocessing</h3>
+            <ul>
+                <li>Handle missing values, duplicates, and inconsistencies.</li>
+                <li>Standardize and transform raw data into analysis-ready format.</li>
+                <li>Experience with Excel, Power Query, and Python (Pandas).</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>📊 Exploratory Data Analysis (EDA)</h3>
+            <ul>
+                <li>Summarize main characteristics using statistical and visual methods.</li>
+                <li>Identify patterns, trends, and outliers.</li>
+                <li>Generate insights to support decision making.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>📈 Excel Dashboards & Reporting</h3>
+            <ul>
+                <li>Build interactive Pivot Tables and charts.</li>
+                <li>Apply advanced formulas and data validation.</li>
+                <li>Create automated refresh workflows with Power Query.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🔄 Power Query Automation</h3>
+            <ul>
+                <li>Design ETL pipelines for data transformation.</li>
+                <li>Combine, filter, and shape data from multiple sources.</li>
+                <li>Enable repeatable and efficient data preparation.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="card" style="max-width: 700px; margin: 0 auto;">
+        <div class="contact-info">
+            <p>📧 <strong>Email:</strong> <a href="mailto:mohamedhuss20087@gmail.com">mohamedhuss20087@gmail.com</a></p>
+            <p>📞 <strong>Phone:</strong> 01064776495</p>
+            <p>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mohamed-hussin-379b3b333/" target="_blank">linkedin.com/in/mohamed-hussin-379b3b333</a></p>
+            <p>🐙 <strong>GitHub:</strong> <a href="https://github.com/Mohamed45577" target="_blank">github.com/Mohamed45577</a></p>
+            <p>📍 <strong>Location:</strong> Cairo, Egypt</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Mohamed Hussin – Aspiring Data Analyst (DEPI)
+</footer>
+
+<script>
+const STORAGE_KEY = "portfolioProfileImage";
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedImage = localStorage.getItem(STORAGE_KEY);
+    const preview = document.getElementById("profilePreview");
+    const placeholder = document.getElementById("profilePlaceholder");
+
+    if (savedImage) {
+        preview.src = savedImage;
+        preview.style.display = "block";
+        placeholder.style.display = "none";
+    }
+});
+
+function previewProfileImage(event) {
+    const input = event.target;
+    const preview = document.getElementById("profilePreview");
+    const placeholder = document.getElementById("profilePlaceholder");
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const imageData = e.target.result;
+            preview.src = imageData;
+            preview.style.display = "block";
+            placeholder.style.display = "none";
+            localStorage.setItem(STORAGE_KEY, imageData);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+
+</body>
+</html>
+
+   
