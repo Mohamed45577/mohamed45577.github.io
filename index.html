@@ -144,7 +144,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            cursor: pointer;
             transition: transform 0.2s;
             position: relative;
         }
@@ -158,7 +157,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
+            display: block;
         }
 
         .profile-placeholder {
@@ -168,10 +167,6 @@
             justify-content: center;
             font-size: 4rem;
             line-height: 1;
-        }
-
-        #profileInput {
-            display: none;
         }
 
         .grid {
@@ -267,12 +262,15 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+
             nav {
                 padding: 1rem 5%;
             }
+
             nav a {
                 margin-left: 1rem;
             }
+
             .profile-circle {
                 width: 220px;
                 height: 220px;
@@ -309,10 +307,8 @@
     </div>
 
     <div class="profile-upload">
-        <div class="profile-circle" onclick="document.getElementById('profileInput').click()">
-            <input type="file" id="profileInput" accept="image/*" onchange="previewProfileImage(event)">
-            <img id="profilePreview" src="#" alt="Profile preview">
-            <div id="profilePlaceholder" class="profile-placeholder" aria-label="Upload profile picture">📸</div>
+        <div class="profile-circle">
+            <img src="profile.jpg" alt="Mohamed Hussin Profile Photo">
         </div>
     </div>
 </section>
@@ -321,8 +317,8 @@
     <h2>About Me</h2>
     <div class="card" style="max-width: 900px; margin: 0 auto;">
         <p style="font-size: 1.2rem; color: var(--text);">
-            <strong>Computer Science & Statistics student</strong> and aspiring Data Analyst at DEPI with a strong interest in data analysis. 
-            Experienced in data cleaning, preprocessing, and exploratory analysis using Excel, Power Query, and Python. 
+            <strong>Computer Science & Statistics student</strong> and aspiring Data Analyst at DEPI with a strong interest in data analysis.
+            Experienced in data cleaning, preprocessing, and exploratory analysis using Excel, Power Query, and Python.
             Focused on transforming raw datasets into structured, analysis-ready data and generating useful insights.
         </p>
         <br>
@@ -332,7 +328,7 @@
         </p>
         <br>
         <p>
-            I’m actively seeking an internship or entry-level data analyst role where I can apply my analytical mindset, 
+            I’m actively seeking an internship or entry-level data analyst role where I can apply my analytical mindset,
             attention to detail, and technical skills to solve real-world problems.
         </p>
     </div>
@@ -453,43 +449,6 @@
     © 2026 Mohamed Hussin – Aspiring Data Analyst (DEPI)
 </footer>
 
-<script>
-const STORAGE_KEY = "portfolioProfileImage";
-
-document.addEventListener("DOMContentLoaded", () => {
-    const savedImage = localStorage.getItem(STORAGE_KEY);
-    const preview = document.getElementById("profilePreview");
-    const placeholder = document.getElementById("profilePlaceholder");
-
-    if (savedImage) {
-        preview.src = savedImage;
-        preview.style.display = "block";
-        placeholder.style.display = "none";
-    }
-});
-
-function previewProfileImage(event) {
-    const input = event.target;
-    const preview = document.getElementById("profilePreview");
-    const placeholder = document.getElementById("profilePlaceholder");
-
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            const imageData = e.target.result;
-            preview.src = imageData;
-            preview.style.display = "block";
-            placeholder.style.display = "none";
-            localStorage.setItem(STORAGE_KEY, imageData);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-</script>
-
 </body>
 </html>
-
    
